@@ -15,9 +15,9 @@ export const GlobalStyles = css`
         width: 100vw;
         height: 100vh;
         display: flex;
-        justify-content: center;
         font-family: "Pretendard-Regular";
         overflow: hidden;
         scroll-behavior: smooth;
+        background-color: #1e1e1e;
     }
 `;
