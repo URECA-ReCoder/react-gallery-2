@@ -1,40 +1,38 @@
-import { Theme } from '@emotion/react';
+import { DefaultTheme } from "./emotion";
 
-const color = {
-  black: '#1a1a1a',
-  white: '#fff',
-  grayDeep: '#979797',
-  grayLight: '#dbdbdb',
-  grayDate: '#888',
-  inputBackground: '#e3e3e35f',
-  sendMessageLogo: '#445ffe',
-  senderMessageBox: '#6245ff',
-  receiverMessageBox: '#e9e9e9',
+const fontColor = {
+    black: "#1E1E1E",
+    white: "#fff",
+    gray100: "#262626", // Dark Charcoal
+    gray200: "#3D3D3D", // Charcoal Gray
+    gray300: "#9A9A9A", // Medium Gray
+    gray400: "#ACABA9", // Soft Gray
+    gray500: "#D4D4D4", // Light Gray
+    gray600: "#E3E2E0", // Very Light Gray
+    red: "#F65F5F",
 };
 
 const fontSize = {
-  small: '12px',
-  medium: '14px',
-  subtitle: '18px',
-  middleTitle: '24px',
-  title: '32px',
+    size50: "10px",
+    size100: "12px",
+    size200: "14px",
+    size300: "18px",
+    size400: "24px",
+    size500: "32px",
 };
 
 const fontWeight = {
-  light: '300',
-  normal: '400',
-  medium: '500',
-  bold: '700',
+    Light: "300",
+    Normal: "400",
+    Medium: "500",
+    SemiBold: "600",
+    Bold: "700",
 };
 
-export type ColorsTypes = typeof color;
-export type FontSizeTypes = typeof fontSize;
-export type FontWeightTypes = typeof fontWeight;
-
-const theme: Theme = {
-  color,
-  fontSize,
-  fontWeight,
+const theme: DefaultTheme = {
+    color: fontColor,
+    size: fontSize,
+    weight: fontWeight,
 };
 
 export default theme;

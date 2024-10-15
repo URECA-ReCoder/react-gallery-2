@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function Login() {
-    useEffect(() => {
-        console.log("login");
-    }, []);
-
-    return <>로그인dd</>;
+    return <>로그인</>;
 }
