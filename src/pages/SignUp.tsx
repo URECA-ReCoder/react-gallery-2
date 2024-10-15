@@ -9,19 +9,31 @@ export default function SignUp() {
         password: "",
     });
 
+    const [isEnabled, setIsEnabled] = useState(false);
+
     const handleInputChange = e => {
         const { name, value } = e.target;
+        setUserInfo(prev => {
+            const updatedUserInfo = {
+                ...prev,
+                [name]: value,
+            };
+
+            const isAllInputFilled =
+                updatedUserInfo.username !== "" && updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
+            setIsEnabled(isAllInputFilled);
+            return updatedUserInfo;
+        });
+
         setUserInfo(prev => ({
             ...prev,
             [name]: value,
         }));
     };
 
-    useEffect(() => {
-        console.log("username :::: ", userInfo.username);
-        console.log("email :::: ", userInfo.email);
-        console.log("password :::: ", userInfo.password);
-    }, [userInfo]);
+    const handleInputSubmit = () => {
+        console.log("제출할게요", userInfo);
+    };
 
     return (
         <>
@@ -53,7 +65,7 @@ export default function SignUp() {
                     onChange={handleInputChange}
                 />
 
-                <Block.ButtonBox isEnabled={true}>
+                <Block.ButtonBox isEnabled={isEnabled} onClick={handleInputSubmit}>
                     <Text.Body1 color="white">Sign up</Text.Body1>
                 </Block.ButtonBox>
             </Block.FlexBox>

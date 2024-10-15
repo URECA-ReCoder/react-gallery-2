@@ -16,6 +16,12 @@ export default function Login() {
         }));
     };
 
+    const handleInputSubmit = () => {
+        console.log("제출할게요");
+        console.log(userInfo.email);
+        console.log(userInfo.password);
+    };
+
     useEffect(() => {
         console.log("email :::: ", userInfo.email);
         console.log("password :::: ", userInfo.password);
@@ -42,7 +48,13 @@ export default function Login() {
                     onChange={handleInputChange}
                 />
 
-                <Block.ButtonBox justifyContent="center" alignItems="center" isEnabled={false} pointer>
+                <Block.ButtonBox
+                    justifyContent="center"
+                    alignItems="center"
+                    isEnabled={false}
+                    pointer
+                    onClick={handleInputSubmit}
+                >
                     <Text.Body1 color="white">Sign up</Text.Body1>
                 </Block.ButtonBox>
             </Block.FlexBox>
