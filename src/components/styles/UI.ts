@@ -107,6 +107,20 @@ export const Block = {
         cursor: ${props => props.pointer && "pointer"};
         gap: ${props => props.gap};
     `,
+    ButtonBox: styled.div<StyleBlock & { isEnabled: boolean }>`
+        display: flex;
+        flex-direction: ${props => props.direction};
+        justify-content: ${props => props.justifyContent};
+        align-items: ${props => props.alignItems};
+        width: ${props => (props.width ? props.width : "100%")};
+        height: ${props => (props.width ? props.height : "auto")};
+        margin: ${props => props.margin};
+        padding: 11px 97px;
+        border-radius: 5px;
+        border: 1px solid ${props => (props.isEnabled ? "#E3E2E0" : "#3D3D3D")};
+        background-color: ${props => (props.isEnabled ? "#E0E1E3" : "#1e1e1e")};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
 };
 
 // 재사용 될 이미지
