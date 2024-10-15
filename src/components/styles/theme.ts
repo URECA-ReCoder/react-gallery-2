@@ -16,6 +16,7 @@ const fontSize = {
     size50: "10px",
     size100: "12px",
     size200: "14px",
+    size250: "15px",
     size300: "18px",
     size400: "24px",
     size500: "32px",

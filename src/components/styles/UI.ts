@@ -25,6 +25,20 @@ export const Text = {
         color: ${({ color }) => (color ? theme.color[color] : theme.color.gray400)};
         cursor: ${props => props.pointer && "pointer"};
     `,
+    MenuTitle: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.SemiBold)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size300)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.white)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
+    MainViewTitle: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.SemiBold)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size500)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.white)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
     Body1: styled.span<StyleText>`
         display: inline-block;
         font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.Medium)};
@@ -37,6 +51,27 @@ export const Text = {
         font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.Medium)};
         font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size100)};
         color: ${({ color }) => (color ? theme.color[color] : theme.color.gray600)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
+    Body3: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.SemiBold)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size250)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.gray300)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
+    Body4: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.Medium)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size200)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.gray300)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
+    Body5: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.Medium)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size200)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.gray500)};
         cursor: ${props => props.pointer && "pointer"};
     `,
     Warning: styled.span<StyleText>`
