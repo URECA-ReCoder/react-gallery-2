@@ -168,18 +168,23 @@ export const Input = {
         background-color: #f0f0f0;
         border-radius: 10px 10px;
     `,
-    InfoInput: styled.input<StyleInput & { isEnabled: boolean }>`
+    InfoInput: styled.input<StyleInput>`
         display: block;
         width: 305px;
         height: 35px;
-        border: 1px solid ${props => (props.isEnabled ? "#E3E2E0" : "#3D3D3D")};
+        border: 1px solid #3d3d3d;
         cursor: ${props => props.pointer && "pointer"};
-        outline: none;
+        outline: #e3e2e0;
         padding-left: 15px;
         background-color: #191919;
         border-radius: 10px 10px;
         ::placeholder {
             font-size: smaller;
+        }
+        color: white;
+
+        &:focus {
+            border: 1px solid #e3e2e0;
         }
     `,
 };

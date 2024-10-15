@@ -4,12 +4,12 @@ import ProductDetail from "./pages/ProductDetail";
 import ProductList from "./pages/ProductList";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
+import App from "./App";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: <App />,
         children: [
             {
                 path: "login",
