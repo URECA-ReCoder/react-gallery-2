@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Block, Input, Text } from "../components/styles/UI";
 import SocialLogin from "../components/SocialLogin";
 import { IAuth } from "../interfaces/account";
@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
     const navigate = useNavigate();
 
+    const [isEnabled, setIsEnabled] = useState(false);
+
     const [userInfo, setUserInfo] = useState({
         email: "",
         password: "",
@@ -15,10 +17,15 @@ export default function Login() {
 
     const handleInputChange = e => {
         const { name, value } = e.target;
-        setUserInfo(prev => ({
-            ...prev,
-            [name]: value,
-        }));
+        setUserInfo(prev => {
+            const updatedUserInfo = {
+                ...prev,
+                [name]: value,
+            };
+            const isFilled = updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
+            setIsEnabled(isFilled);
+            return updatedUserInfo;
+        });
     };
 
     const handleLoginSubmit = async () => {
@@ -70,7 +77,7 @@ export default function Login() {
                         <Block.ButtonBox
                             justifyContent="center"
                             alignItems="center"
-                            isEnabled={false}
+                            isEnabled={isEnabled}
                             pointer
                             onClick={handleLoginSubmit}
                         >

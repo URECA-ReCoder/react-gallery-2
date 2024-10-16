@@ -24,16 +24,11 @@ export default function SignUp() {
                 [name]: value,
             };
 
-            const isAllInputFilled =
+            const isFilled =
                 updatedUserInfo.username !== "" && updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isAllInputFilled);
+            setIsEnabled(isFilled);
             return updatedUserInfo;
         });
-
-        setUserInfo(prev => ({
-            ...prev,
-            [name]: value,
-        }));
     };
 
     const handleSignupSubmit = async () => {
