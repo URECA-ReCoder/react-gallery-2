@@ -230,3 +230,13 @@ export const Input = {
         }
     `,
 };
+
+type StyleMargin = {
+    size: number;
+    direction: "column" | "row";
+};
+
+export const Margin = styled.div<StyleMargin>`
+    width: ${({ size, direction }) => (direction === "row" ? size : 0)}px;
+    height: ${({ size, direction }) => (direction === "column" ? size : 0)}px;
+`;

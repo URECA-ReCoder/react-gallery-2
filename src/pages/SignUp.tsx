@@ -4,6 +4,7 @@ import SocialLogin from "../components/SocialLogin";
 import { IAuth } from "../interfaces/account";
 import { LoginApi } from "../components/api/loginApi";
 import { useNavigate } from "react-router-dom";
+import { validateEmail, validatePassword } from "../share/validate";
 
 export default function SignUp() {
     const navigate = useNavigate();
@@ -24,33 +25,25 @@ export default function SignUp() {
                 [name]: value,
             };
 
-            const isAllInputFilled =
-                updatedUserInfo.username !== "" && updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isAllInputFilled);
             return updatedUserInfo;
         });
-
-        setUserInfo(prev => ({
-            ...prev,
-            [name]: value,
-        }));
     };
 
     const handleSignupSubmit = async () => {
-        console.log("제출할게요", userInfo);
+        if (isEnabled) {
+            const signupInfo: IAuth = {
+                username: userInfo.username,
+                email: userInfo.email,
+                password: userInfo.password,
+            };
 
-        const signupInfo: IAuth = {
-            username: userInfo.username,
-            email: userInfo.email,
-            password: userInfo.password,
-        };
-
-        try {
-            await LoginApi.signUp(signupInfo);
-            console.log("회원가입 성공");
-            navigate("/login");
-        } catch (error) {
-            console.log(error.response.data.message);
+            try {
+                await LoginApi.signUp(signupInfo);
+                alert("성공적으로 회원가입되었습니다.");
+                navigate("/login");
+            } catch (error) {
+                console.log(error.response.data.message);
+            }
         }
     };
 
@@ -58,50 +51,78 @@ export default function SignUp() {
         navigate("/login");
     };
 
+    const isEmailValid = validateEmail(userInfo.email);
+    const isPasswordValid = validatePassword(userInfo.password);
+
+    useEffect(() => {
+        const isFilled = userInfo.username !== "" && userInfo.email !== "" && userInfo.password !== "";
+        setIsEnabled(isFilled && isEmailValid && isPasswordValid);
+    }, [userInfo]);
+
     return (
         <>
             <Block.FlexBox width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
                 <div>
                     <SocialLogin />
-                    <Text.Body2>Name</Text.Body2>
-                    <Input.InfoInput
-                        name="username"
-                        placeholder="이름을 입력해주세요."
-                        value={userInfo.username}
-                        onChange={handleInputChange}
-                    />
+                    <Block.FlexBox direction="column" style={{ margin: "36px 0" }} gap="25px">
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Name</Text.Body2>
+                            <Input.InfoInput
+                                name="username"
+                                placeholder="이름을 입력해주세요."
+                                value={userInfo.username}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </Block.FlexBox>
 
-                    <Text.Body2>Email</Text.Body2>
-                    <Input.InfoInput
-                        name="email"
-                        placeholder="이메일을 입력해주세요."
-                        value={userInfo.email}
-                        onChange={handleInputChange}
-                    />
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Block.FlexBox width="190px" alignItems="center" justifyContent="space-between">
+                                <Text.Body2>Email</Text.Body2>
+                                {!isEmailValid && userInfo.email !== "" && (
+                                    <Text.Warning>이메일 주소를 정확히 입력해주세요. </Text.Warning>
+                                )}
+                            </Block.FlexBox>
+                            <Input.InfoInput
+                                type="email"
+                                name="email"
+                                placeholder="이메일을 입력해주세요."
+                                value={userInfo.email}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </Block.FlexBox>
 
-                    <Text.Body2>Password</Text.Body2>
-                    <Input.InfoInput
-                        name="password"
-                        type="password"
-                        placeholder="비밀번호를 입력해주세요."
-                        value={userInfo.password}
-                        onChange={handleInputChange}
-                    />
-
-                    <Block.ButtonBox isEnabled={isEnabled} onClick={handleSignupSubmit}>
-                        <Text.Body1 color="white">Sign up</Text.Body1>
-                    </Block.ButtonBox>
-
-                    <Text.Body1 color="gray300">
-                        이미 계정이 있으신가요 ?{" "}
-                        <Text.Body1
-                            style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
-                            onClick={handleLoginButtonClick}
-                        >
-                            로그인
-                        </Text.Body1>
-                    </Text.Body1>
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Block.FlexBox width="260px" alignItems="center" justifyContent="space-between">
+                                <Text.Body2>Password</Text.Body2>
+                                {!isPasswordValid && userInfo.password !== "" && (
+                                    <Text.Warning>영문, 숫자를 조합해서 입력해주세요. (8-16자)</Text.Warning>
+                                )}
+                            </Block.FlexBox>
+                            <Input.InfoInput
+                                name="password"
+                                type="password"
+                                placeholder="비밀번호를 입력해주세요."
+                                value={userInfo.password}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </Block.FlexBox>
+                        <Block.ButtonBox isEnabled={isEnabled} onClick={handleSignupSubmit}>
+                            <Text.Body1 color="white">Sign up</Text.Body1>
+                        </Block.ButtonBox>
+                    </Block.FlexBox>
                 </div>
+                <Text.Body1 color="gray300">
+                    이미 계정이 있으신가요 ?{" "}
+                    <Text.Body1
+                        style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
+                        onClick={handleLoginButtonClick}
+                    >
+                        로그인
+                    </Text.Body1>
+                </Text.Body1>
             </Block.FlexBox>
         </>
     );
