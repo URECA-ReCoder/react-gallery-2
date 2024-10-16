@@ -1,7 +1,7 @@
 import { DefaultTheme } from "./emotion";
 
 const fontColor = {
-    black: "#1E1E1E",
+    black: "#191919",
     white: "#fff",
     gray100: "#262626", // Dark Charcoal
     gray200: "#3D3D3D", // Charcoal Gray

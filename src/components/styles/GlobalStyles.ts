@@ -18,6 +18,6 @@ export const GlobalStyles = css`
         font-family: "Pretendard-Regular";
         overflow: hidden;
         scroll-behavior: smooth;
-        background-color: #1e1e1e;
+        background-color: #191919;
     }
 `;

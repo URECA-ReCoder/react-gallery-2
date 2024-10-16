@@ -6,12 +6,15 @@ import { Global, ThemeProvider } from "@emotion/react";
 import React from "react";
 import { router } from "./router";
 import theme from "./components/styles/theme";
+import { RecoilRoot } from "recoil";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
     <StrictMode>
-        <ThemeProvider theme={theme}>
-            <Global styles={GlobalStyles} />
-            <RouterProvider router={router} />
-        </ThemeProvider>
+        <RecoilRoot>
+            <ThemeProvider theme={theme}>
+                <Global styles={GlobalStyles} />
+                <RouterProvider router={router} />
+            </ThemeProvider>
+        </RecoilRoot>
     </StrictMode>
 );
