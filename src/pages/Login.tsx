@@ -29,17 +29,19 @@ export default function Login() {
     };
 
     const handleLoginSubmit = async () => {
-        const loginInfo: IAuth = {
-            email: userInfo.email,
-            password: userInfo.password,
-        };
+        if (isEnabled) {
+            const loginInfo: IAuth = {
+                email: userInfo.email,
+                password: userInfo.password,
+            };
 
-        try {
-            await LoginApi.login(loginInfo);
-            alert("성공적으로 로그인되었습니다.");
-            navigate("/products");
-        } catch (e) {
-            console.log("웩웩");
+            try {
+                await LoginApi.login(loginInfo);
+                alert("성공적으로 로그인되었습니다.");
+                navigate("/products");
+            } catch (e) {
+                console.log("웩웩");
+            }
         }
     };
 
@@ -61,6 +63,7 @@ export default function Login() {
                                 value={userInfo.email}
                                 placeholder="이메일을 입력해주세요."
                                 onChange={handleInputChange}
+                                required
                             />
                         </Block.FlexBox>
                         <Block.FlexBox direction="column" gap="11px">
@@ -71,6 +74,7 @@ export default function Login() {
                                 value={userInfo.password}
                                 placeholder="비밀번호를 입력해주세요."
                                 onChange={handleInputChange}
+                                required
                             />
                         </Block.FlexBox>
 

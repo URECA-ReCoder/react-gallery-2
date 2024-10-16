@@ -32,20 +32,20 @@ export default function SignUp() {
     };
 
     const handleSignupSubmit = async () => {
-        console.log("제출할게요", userInfo);
+        if (isEnabled) {
+            const signupInfo: IAuth = {
+                username: userInfo.username,
+                email: userInfo.email,
+                password: userInfo.password,
+            };
 
-        const signupInfo: IAuth = {
-            username: userInfo.username,
-            email: userInfo.email,
-            password: userInfo.password,
-        };
-
-        try {
-            await LoginApi.signUp(signupInfo);
-            alert("성공적으로 회원가입되었습니다.");
-            navigate("/login");
-        } catch (error) {
-            console.log(error.response.data.message);
+            try {
+                await LoginApi.signUp(signupInfo);
+                alert("성공적으로 회원가입되었습니다.");
+                navigate("/login");
+            } catch (error) {
+                console.log(error.response.data.message);
+            }
         }
     };
 
@@ -66,16 +66,19 @@ export default function SignUp() {
                                 placeholder="이름을 입력해주세요."
                                 value={userInfo.username}
                                 onChange={handleInputChange}
+                                required
                             />
                         </Block.FlexBox>
 
                         <Block.FlexBox direction="column" gap="11px">
                             <Text.Body2>Email</Text.Body2>
                             <Input.InfoInput
+                                type="email"
                                 name="email"
                                 placeholder="이메일을 입력해주세요."
                                 value={userInfo.email}
                                 onChange={handleInputChange}
+                                required
                             />
                         </Block.FlexBox>
 
@@ -87,6 +90,7 @@ export default function SignUp() {
                                 placeholder="비밀번호를 입력해주세요."
                                 value={userInfo.password}
                                 onChange={handleInputChange}
+                                required
                             />
                         </Block.FlexBox>
                         <Block.ButtonBox isEnabled={isEnabled} onClick={handleSignupSubmit}>
