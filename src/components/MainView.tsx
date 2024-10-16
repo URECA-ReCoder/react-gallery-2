@@ -24,7 +24,7 @@ export default function MainView(){
     });
   },[setItems]);
 
-  const filteredListItems = (filteredList == null || filteredList == "Home" ) ? items : items.filter((item)=>item.type === filteredList) ;
+  const filteredListItems = (filteredList == "" || filteredList == "Home" ) ? items : items.filter((item)=>item.type === filteredList) ;
 
   console.log(filteredList);
 
@@ -36,7 +36,7 @@ export default function MainView(){
       </Title>
       <Content>
         <Menu>
-          {(filteredList == null || filteredList == "Home" )
+          {(filteredList == "" || filteredList == "Home" )
             ? 
             (<>
               <HomeIcon width="14" height="13" color="#d4d4d4"/>
@@ -64,6 +64,7 @@ export default function MainView(){
                   </TitleText>
                   <Bookmark>
                     <BookmarkIcon width="19" height="25" color="#3f3f3f"/>
+                    <BookmarkCount>29</BookmarkCount>
                   </Bookmark>
                 </TitleBox>
               </Box>
@@ -169,4 +170,12 @@ const TitleText = styled.div`
 const Bookmark = styled.div`
   position: absolute;
   right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const BookmarkCount = styled.div`
+  font-size: 10px;
+  color: #838383;
 `;
