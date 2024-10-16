@@ -74,6 +74,13 @@ export const Text = {
         color: ${({ color }) => (color ? theme.color[color] : theme.color.gray500)};
         cursor: ${props => props.pointer && "pointer"};
     `,
+    Body6: styled.span<StyleText>`
+        display: inline-block;
+        font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.SemiBold)};
+        font-size: ${({ size }) => (size ? theme.size[size] : theme.size.size100)};
+        color: ${({ color }) => (color ? theme.color[color] : theme.color.gray600)};
+        cursor: ${props => props.pointer && "pointer"};
+    `,
     Warning: styled.span<StyleText>`
         display: inline-block;
         font-weight: ${({ weight }) => (weight ? theme.weight[weight] : theme.weight.Medium)};
