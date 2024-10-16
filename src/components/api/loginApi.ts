@@ -8,7 +8,8 @@ const SIGNUP_URI = "/auth/register";
 export const LoginApi = {
     login: async (loginInfo: IAuth) => {
         try {
-            await axios.post(LOGIN_URI, loginInfo).then(res => res.data);
+            const response = await axios.post(LOGIN_URI, loginInfo);
+            return response;
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 alert(error.response.data.message);

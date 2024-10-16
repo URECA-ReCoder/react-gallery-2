@@ -159,7 +159,7 @@ export const Block = {
         margin: ${props => props.margin};
         border-radius: 5px;
         border: 1px solid ${props => (props.isEnabled ? "#E3E2E0" : "#3D3D3D")};
-        background-color: ${props => (props.isEnabled ? "#E0E1E3" : "#191919")};
+        background-color: ${props => (props.isEnabled ? "#555555" : "#191919")};
         cursor: pointer;
     `,
 };
