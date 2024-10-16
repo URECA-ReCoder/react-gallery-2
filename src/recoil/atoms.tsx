@@ -21,3 +21,7 @@ export const itemsState = atom<Item[]>({
   default: [], // 초기값 빈 배열
 });
 
+export const filteredListState = atom<string>({
+  key: "filteredListState",
+  default: "",
+})

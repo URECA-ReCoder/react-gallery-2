@@ -4,11 +4,12 @@ import { Text } from "./styles/UI";
 import { BookmarkIcon, HomeIcon, PageIcon } from "../assets/svg";
 import axios from "axios";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { itemsState } from "../recoil/atoms";
+import { filteredListState, itemsState } from "../recoil/atoms";
 
 export default function MainView(){
   const setItems = useSetRecoilState(itemsState); // API 데이터 가져온 후 상태 업데이트
   const items = useRecoilValue(itemsState); // Recoil에 저장된 items 가져오기
+  const filteredList = useRecoilValue(filteredListState);
 
   useEffect(()=>{
     const apiUrl = "https://vicarious-arlyn-recoder-cb1ffac8.koyeb.app"; // API 요청 주소
@@ -23,7 +24,9 @@ export default function MainView(){
     });
   },[setItems]);
 
-  
+  const filteredListItems = (filteredList == null || filteredList == "Home" ) ? items : items.filter((item)=>item.type === filteredList) ;
+
+  console.log(filteredList);
 
   return (
     <MainWrapper>
@@ -33,12 +36,23 @@ export default function MainView(){
       </Title>
       <Content>
         <Menu>
-          <HomeIcon width="14" height="13" color="#d4d4d4"/>
-          <Text.Body5>Home</Text.Body5>
+          {(filteredList == null || filteredList == "Home" )
+            ? 
+            (<>
+              <HomeIcon width="14" height="13" color="#d4d4d4"/>
+              <Text.Body5>Home</Text.Body5>
+            </>)
+            : 
+            (
+              <>
+                <div style={{fontSize:"12px", lineHeight:"1"}}>📁</div>
+                <Text.Body5>{filteredList}</Text.Body5>
+              </>
+            )}
         </Menu>
         <ScrollBox>
           <BoxList>
-            {items.map((item)=>(
+            {filteredListItems.map((item)=>(
               <Box key={item.id}>
                 <Tag type={item.type}>
                   <Text.Body6>{item.type}</Text.Body6>
