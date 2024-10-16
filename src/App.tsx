@@ -9,7 +9,9 @@ export default function App() {
     useEffect(() => {
         const accessToken = localStorage.getItem("accessToken");
 
-        navigate(accessToken ? "/products" : "/login");
+        if (!accessToken) {
+            navigate("/login");
+        }
     }, [navigate]);
     return (
         <>

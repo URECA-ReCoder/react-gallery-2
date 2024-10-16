@@ -36,7 +36,8 @@ export default function Login() {
             };
 
             try {
-                await LoginApi.login(loginInfo);
+                const response = await LoginApi.login(loginInfo);
+                localStorage.setItem("accessToken", response.data.accessToken);
                 alert("성공적으로 로그인되었습니다.");
                 navigate("/products");
             } catch (e) {
