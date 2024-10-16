@@ -8,9 +8,8 @@ export default function App() {
 
     useEffect(() => {
         const accessToken = localStorage.getItem("accessToken");
-        const userExists = localStorage.getItem("userExists");
 
-        navigate(accessToken ? "/productList" : userExists ? "/login" : "/signup");
+        navigate(accessToken ? "/products" : "/login");
     }, [navigate]);
     return (
         <>

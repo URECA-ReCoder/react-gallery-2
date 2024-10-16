@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export const BASE_URL = "https://vicarious-arlyn-recoder-cb1ffac8.koyeb.app/";
+export const BASE_URL = "https://gentle-zilvia-recoder-a0d5fd3e.koyeb.app";
 
 const config: AxiosRequestConfig = { baseURL: BASE_URL };
 
