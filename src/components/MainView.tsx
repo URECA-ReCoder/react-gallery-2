@@ -44,13 +44,29 @@ export default function MainView() {
         }
     }, [navigate]);
 
+    function handleLoginClick(){
+      navigate('/login');
+    }
+
     return (
         <MainWrapper>
-            {isLoggedIn ? <>유저이름</> : <>로그인/회원가입</>}
-            <Title>
-                <span style={{ fontSize: "64px" }}>👋</span>
-                <Text.MainViewTitle>Hello, yoonjeong ko</Text.MainViewTitle>
-            </Title>
+            {isLoggedIn 
+            ? (
+            <LoginTitle>
+              <span style={{ fontSize: "64px" }}>👋</span>
+              <Text.MainViewTitle>Hello, yoonjeong ko</Text.MainViewTitle>
+            </LoginTitle>)
+            : (
+            <NotLoginTitle>
+              <Text.MainViewTitle>Please, Log in</Text.MainViewTitle>
+              <LoginButton onClick={handleLoginClick}>
+                <span>Log in</span>
+                <Arrow>›</Arrow>  
+              </LoginButton>
+            </NotLoginTitle>
+            )}
+            
+            
             <Content>
                 <Menu>
                     {filteredList == "" || filteredList == "Home" ? (
@@ -99,7 +115,7 @@ const MainWrapper = styled.div`
     overflow: auto;
 `;
 
-const Title = styled.div`
+const LoginTitle = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,6 +124,44 @@ const Title = styled.div`
     border-bottom: 1px solid #2f2f2f;
     width: 707px;
     margin-top: 30px;
+`;
+
+const NotLoginTitle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 1px solid #2f2f2f;
+    width: 707px;
+    margin-top: 30px;
+    position: relative;
+`;
+
+const LoginButton = styled.div`
+  width: 109px;
+  height: 33px;
+  border-radius: 5px;
+  background-color: rgba(16, 136, 255, 0.2);
+  border: 1px solid #1088FF;
+  font-size: 14px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 8px 13px 8px 13px;
+  box-sizing: border-box;
+  line-height: 1;
+  position: absolute;
+  right: 1px;
+
+  &:hover{
+    cursor: pointer;
+  }
+`;
+
+const Arrow = styled.div`
+  width: 20px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const Content = styled.div`
