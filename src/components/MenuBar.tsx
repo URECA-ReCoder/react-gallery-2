@@ -4,7 +4,7 @@ import { HomeIcon, SearchIcon } from "../assets/svg";
 import { Text } from "./styles/UI";
 
 export default function MenuBar(){
-  const weeks = [1, 2, 3, 4, 5, 6];
+  const weeks = ["VANILLA_TODO", "REACT_TODO", "REACT_SNS"];
 
   return (
     <Wrapper>
@@ -28,7 +28,7 @@ export default function MenuBar(){
           {weeks.map((week)=>(
             <FilterContent key={week}>
               <Text.Body3>📁</Text.Body3>
-              <Text.Body3>{week}주차</Text.Body3>
+              <span>{week}</span>
             </FilterContent>
           ))}
         </FilterList>
@@ -63,6 +63,10 @@ const Home = styled.div`
   gap: 10px;
   padding: 6px 0;
   margin-top: 14px;
+
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const Search = styled.div`
@@ -70,6 +74,10 @@ const Search = styled.div`
   align-items: center;
   gap: 10px;
   padding: 6px 0;
+
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 const FilterContainer = styled.div`
@@ -79,7 +87,7 @@ const FilterContainer = styled.div`
 const FilterList = styled.div`
   margin-top: 7px;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
 `;
 
 const FilterContent = styled.div`
@@ -87,4 +95,12 @@ const FilterContent = styled.div`
   align-items: center;
   gap: 7px;
   padding: 7px 0 6px 0;
+  color: #9A9A9A;
+  font-size: 15px;
+  font-weight: bold;
+
+  &:hover{
+    cursor: pointer;
+    color: #ffffff;
+  }
 `;
