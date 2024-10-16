@@ -152,16 +152,15 @@ export const Block = {
     ButtonBox: styled.div<StyleBlock & { isEnabled: boolean }>`
         display: flex;
         flex-direction: ${props => props.direction};
-        justify-content: ${props => props.justifyContent};
-        align-items: ${props => props.alignItems};
-        width: ${props => (props.width ? props.width : "100%")};
-        height: ${props => (props.width ? props.height : "auto")};
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: 35px;
         margin: ${props => props.margin};
-        padding: 11px 97px;
         border-radius: 5px;
         border: 1px solid ${props => (props.isEnabled ? "#E3E2E0" : "#3D3D3D")};
-        background-color: ${props => (props.isEnabled ? "#E0E1E3" : "#1e1e1e")};
-        cursor: ${props => props.pointer && "pointer"};
+        background-color: ${props => (props.isEnabled ? "#E0E1E3" : "#191919")};
+        cursor: pointer;
     `,
 };
 
@@ -210,5 +209,24 @@ export const Input = {
         padding-left: 10px;
         background-color: #f0f0f0;
         border-radius: 10px 10px;
+    `,
+    InfoInput: styled.input<StyleInput>`
+        display: block;
+        width: 305px;
+        height: 35px;
+        border: 1px solid #3d3d3d;
+        cursor: ${props => props.pointer && "pointer"};
+        outline: #e3e2e0;
+        padding-left: 15px;
+        background-color: #191919;
+        border-radius: 10px 10px;
+        ::placeholder {
+            font-size: smaller;
+        }
+        color: white;
+
+        &:focus {
+            border: 1px solid #e3e2e0;
+        }
     `,
 };

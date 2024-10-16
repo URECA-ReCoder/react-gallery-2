@@ -12,7 +12,7 @@ export default function SocialLogin() {
             <Block.FlexBox direction="column">
                 <Text.MainTitle>Think it. Make it.</Text.MainTitle>
                 <Text.Title>{message}</Text.Title>
-                <Block.ButtonBox width="320px" height="35px" isEnabled={false} pointer>
+                <Block.ButtonBox isEnabled={false}>
                     <Text.Body1 color="white">Continue with Kakao</Text.Body1>
                 </Block.ButtonBox>
             </Block.FlexBox>
