@@ -19,5 +19,10 @@ export const GlobalStyles = css`
         overflow: hidden;
         scroll-behavior: smooth;
         background-color: #191919;
+
+    }
+
+    ::-webkit-scrollbar{
+     display: none;
     }
 `;

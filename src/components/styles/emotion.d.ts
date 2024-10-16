@@ -24,6 +24,7 @@ export interface DefaultTheme {
         size50: string;
         size100: string;
         size200: string;
+        size250: string;
         size300: string;
         size400: string;
         size500: string;
