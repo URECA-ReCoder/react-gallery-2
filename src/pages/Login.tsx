@@ -29,7 +29,7 @@ export default function Login() {
 
         try {
             await LoginApi.login(loginInfo);
-            console.log("로그인성공");
+            alert("성공적으로 로그인되었습니다.");
             navigate("/products");
         } catch (e) {
             console.log("웩웩");
@@ -45,43 +45,48 @@ export default function Login() {
             <Block.FlexBox width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
                 <div>
                     <SocialLogin />
-                    <Text.Body2>Email</Text.Body2>
-                    <Input.InfoInput
-                        name="email"
-                        value={userInfo.email}
-                        placeholder="이메일을 입력해주세요."
-                        onChange={handleInputChange}
-                    />
 
-                    <Text.Body2>Password</Text.Body2>
-                    <Input.InfoInput
-                        type="password"
-                        name="password"
-                        value={userInfo.password}
-                        placeholder="비밀번호를 입력해주세요."
-                        onChange={handleInputChange}
-                    />
+                    <Block.FlexBox direction="column" style={{ margin: "36px 0" }} gap="25px">
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Email</Text.Body2>
+                            <Input.InfoInput
+                                name="email"
+                                value={userInfo.email}
+                                placeholder="이메일을 입력해주세요."
+                                onChange={handleInputChange}
+                            />
+                        </Block.FlexBox>
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Password</Text.Body2>
+                            <Input.InfoInput
+                                type="password"
+                                name="password"
+                                value={userInfo.password}
+                                placeholder="비밀번호를 입력해주세요."
+                                onChange={handleInputChange}
+                            />
+                        </Block.FlexBox>
 
-                    <Block.ButtonBox
-                        justifyContent="center"
-                        alignItems="center"
-                        isEnabled={false}
-                        pointer
-                        onClick={handleLoginSubmit}
-                    >
-                        <Text.Body1 color="white">Log in</Text.Body1>
-                    </Block.ButtonBox>
-
-                    <Text.Body1 color="gray300">
-                        아직 계정이 없으신가요 ?{" "}
-                        <Text.Body1
-                            style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
-                            onClick={handleSignupButtonClick}
+                        <Block.ButtonBox
+                            justifyContent="center"
+                            alignItems="center"
+                            isEnabled={false}
+                            pointer
+                            onClick={handleLoginSubmit}
                         >
-                            회원가입
-                        </Text.Body1>
-                    </Text.Body1>
+                            <Text.Body1 color="white">Log in</Text.Body1>
+                        </Block.ButtonBox>
+                    </Block.FlexBox>
                 </div>
+                <Text.Body1 color="gray300">
+                    아직 계정이 없으신가요 ?{" "}
+                    <Text.Body1
+                        style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
+                        onClick={handleSignupButtonClick}
+                    >
+                        회원가입
+                    </Text.Body1>
+                </Text.Body1>
             </Block.FlexBox>
         </>
     );

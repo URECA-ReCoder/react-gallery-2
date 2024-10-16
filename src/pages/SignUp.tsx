@@ -47,7 +47,7 @@ export default function SignUp() {
 
         try {
             await LoginApi.signUp(signupInfo);
-            console.log("회원가입 성공");
+            alert("성공적으로 회원가입되었습니다.");
             navigate("/login");
         } catch (error) {
             console.log(error.response.data.message);
@@ -63,45 +63,51 @@ export default function SignUp() {
             <Block.FlexBox width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
                 <div>
                     <SocialLogin />
-                    <Text.Body2>Name</Text.Body2>
-                    <Input.InfoInput
-                        name="username"
-                        placeholder="이름을 입력해주세요."
-                        value={userInfo.username}
-                        onChange={handleInputChange}
-                    />
+                    <Block.FlexBox direction="column" style={{ margin: "36px 0" }} gap="25px">
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Name</Text.Body2>
+                            <Input.InfoInput
+                                name="username"
+                                placeholder="이름을 입력해주세요."
+                                value={userInfo.username}
+                                onChange={handleInputChange}
+                            />
+                        </Block.FlexBox>
 
-                    <Text.Body2>Email</Text.Body2>
-                    <Input.InfoInput
-                        name="email"
-                        placeholder="이메일을 입력해주세요."
-                        value={userInfo.email}
-                        onChange={handleInputChange}
-                    />
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Email</Text.Body2>
+                            <Input.InfoInput
+                                name="email"
+                                placeholder="이메일을 입력해주세요."
+                                value={userInfo.email}
+                                onChange={handleInputChange}
+                            />
+                        </Block.FlexBox>
 
-                    <Text.Body2>Password</Text.Body2>
-                    <Input.InfoInput
-                        name="password"
-                        type="password"
-                        placeholder="비밀번호를 입력해주세요."
-                        value={userInfo.password}
-                        onChange={handleInputChange}
-                    />
-
-                    <Block.ButtonBox isEnabled={isEnabled} onClick={handleSignupSubmit}>
-                        <Text.Body1 color="white">Sign up</Text.Body1>
-                    </Block.ButtonBox>
-
-                    <Text.Body1 color="gray300">
-                        이미 계정이 있으신가요 ?{" "}
-                        <Text.Body1
-                            style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
-                            onClick={handleLoginButtonClick}
-                        >
-                            로그인
-                        </Text.Body1>
-                    </Text.Body1>
+                        <Block.FlexBox direction="column" gap="11px">
+                            <Text.Body2>Password</Text.Body2>
+                            <Input.InfoInput
+                                name="password"
+                                type="password"
+                                placeholder="비밀번호를 입력해주세요."
+                                value={userInfo.password}
+                                onChange={handleInputChange}
+                            />
+                        </Block.FlexBox>
+                        <Block.ButtonBox isEnabled={isEnabled} onClick={handleSignupSubmit}>
+                            <Text.Body1 color="white">Sign up</Text.Body1>
+                        </Block.ButtonBox>
+                    </Block.FlexBox>
                 </div>
+                <Text.Body1 color="gray300">
+                    이미 계정이 있으신가요 ?{" "}
+                    <Text.Body1
+                        style={{ borderBottom: "1px solid gray", color: "gray", cursor: "pointer" }}
+                        onClick={handleLoginButtonClick}
+                    >
+                        로그인
+                    </Text.Body1>
+                </Text.Body1>
             </Block.FlexBox>
         </>
     );
