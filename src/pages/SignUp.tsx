@@ -27,7 +27,7 @@ export default function SignUp() {
 
             const isFilled =
                 updatedUserInfo.username !== "" && updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isFilled);
+            setIsEnabled(isFilled && isEmailValid && isPasswordValid);
             return updatedUserInfo;
         });
     };

@@ -24,7 +24,7 @@ export default function Login() {
                 [name]: value,
             };
             const isFilled = updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isFilled);
+            setIsEnabled(isFilled && isEmailValid && isPasswordValid);
             return updatedUserInfo;
         });
     };
