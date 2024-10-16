@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Text } from "./styles/UI";
 import { BookmarkIcon, HomeIcon, PageIcon } from "../assets/svg";
+import axios from "axios";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { itemsState } from "../recoil/atoms";
 
 export default function MainView(){
-  const items = [
-    { name: "고윤정", bookmarked: false},
-    { name: "고주희", bookmarked: true},
-    { name: "김윤일", bookmarked: false},
-    { name: "심여은", bookmarked: false},
-    { name: "이지수", bookmarked: false},
-    { name: "이효린", bookmarked: true},
-    { name: "임시언", bookmarked: false},
-    { name: "임시언", bookmarked: false},
-    { name: "임시언", bookmarked: false},
-    { name: "임시언", bookmarked: false},
-    { name: "임시언", bookmarked: false},
-  ];
+  const setItems = useSetRecoilState(itemsState); // API 데이터 가져온 후 상태 업데이트
+  const items = useRecoilValue(itemsState); // Recoil에 저장된 items 가져오기
+
+  useEffect(()=>{
+    const apiUrl = "https://vicarious-arlyn-recoder-cb1ffac8.koyeb.app"; // API 요청 주소
+    const endpoint = "/missions"; // API 엔드포인트 
+
+    axios.get(apiUrl + endpoint)
+    .then((res)=>{
+      setItems(res.data); // 데이터를 Recoil에 저장
+    })
+    .catch(err=>{
+      alert(err.response.data.message);
+    });
+  },[setItems]);
+
+  
 
   return (
     <MainWrapper>
@@ -31,12 +38,15 @@ export default function MainView(){
         </Menu>
         <ScrollBox>
           <BoxList>
-            {items.map((item, index)=>(
-              <Box key={index}>
+            {items.map((item)=>(
+              <Box key={item.id}>
+                <Tag type={item.type}>
+                  <Text.Body6>{item.type}</Text.Body6>
+                </Tag>
                 <TitleBox>
                   <TitleText>
                     <PageIcon width="12" height="15"/>
-                    <Text.Body1>{item.name}</Text.Body1>
+                    <Text.Body1>{item.creator}</Text.Body1>
                   </TitleText>
                   <Bookmark>
                     <BookmarkIcon width="19" height="25" color="#3f3f3f"/>
@@ -100,6 +110,27 @@ const Box = styled.div`
   border-radius: 6px;
   background-color: #D9D9D9;
   position: relative;
+`;
+
+const Tag = styled.div<{type: string}>`
+  width: fit-content;
+  height: 22px;
+  border-radius: 11px;
+  background-color: ${({type})=>
+    type === "VANILLA_TODO" ? "#B38938" : 
+    type === "REACT_TODO" ? "#29456C" : 
+    type === "REACT_SNS" ? "#2C593F" :
+    "#5A5A5A"
+  };
+  opacity: 0.6;
+  padding: 0px 13px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 `;
 
 const TitleBox = styled.div`
