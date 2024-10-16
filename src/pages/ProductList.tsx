@@ -1,18 +1,15 @@
 import React from "react";
-import styled from "@emotion/styled";
 import MenuBar from "../components/MenuBar";
 import MainView from "../components/MainView";
+import { Block } from "../components/styles/UI";
 
 export default function ProductList() {
     return (
-        <Wrapper>
-            <MenuBar/>
-            <MainView/>
-        </Wrapper>
+        <>
+            <Block.FlexBox>
+                <MenuBar />
+                <MainView />
+            </Block.FlexBox>
+        </>
     );
 }
-
-const Wrapper = styled.div`
-    display: flex;
-    
-`;
