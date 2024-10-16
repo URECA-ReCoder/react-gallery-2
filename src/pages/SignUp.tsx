@@ -25,9 +25,6 @@ export default function SignUp() {
                 [name]: value,
             };
 
-            const isFilled =
-                updatedUserInfo.username !== "" && updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isFilled && isEmailValid && isPasswordValid);
             return updatedUserInfo;
         });
     };
@@ -56,6 +53,11 @@ export default function SignUp() {
 
     const isEmailValid = validateEmail(userInfo.email);
     const isPasswordValid = validatePassword(userInfo.password);
+
+    useEffect(() => {
+        const isFilled = userInfo.username !== "" && userInfo.email !== "" && userInfo.password !== "";
+        setIsEnabled(isFilled && isEmailValid && isPasswordValid);
+    }, [userInfo]);
 
     return (
         <>

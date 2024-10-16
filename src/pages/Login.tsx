@@ -23,8 +23,7 @@ export default function Login() {
                 ...prev,
                 [name]: value,
             };
-            const isFilled = updatedUserInfo.email !== "" && updatedUserInfo.password !== "";
-            setIsEnabled(isFilled && isEmailValid && isPasswordValid);
+
             return updatedUserInfo;
         });
     };
@@ -52,6 +51,11 @@ export default function Login() {
 
     const isEmailValid = validateEmail(userInfo.email);
     const isPasswordValid = validatePassword(userInfo.password);
+
+    useEffect(() => {
+        const isFilled = userInfo.email !== "" && userInfo.password !== "";
+        setIsEnabled(isFilled && isEmailValid && isPasswordValid);
+    }, [userInfo]);
 
     return (
         <>
