@@ -4,6 +4,7 @@ import SocialLogin from "../components/SocialLogin";
 import { IAuth } from "../interfaces/account";
 import { LoginApi } from "../components/api/loginApi";
 import { useNavigate } from "react-router-dom";
+import { validateEmail, validatePassword } from "../share/validate";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function Login() {
                 alert("성공적으로 로그인되었습니다.");
                 navigate("/products");
             } catch (e) {
-                console.log("웩웩");
+                console.log("로그인 실패");
             }
         }
     };
@@ -48,6 +49,9 @@ export default function Login() {
     const handleSignupButtonClick = () => {
         navigate("/signup");
     };
+
+    const isEmailValid = validateEmail(userInfo.email);
+    const isPasswordValid = validatePassword(userInfo.password);
 
     return (
         <>
@@ -57,7 +61,12 @@ export default function Login() {
 
                     <Block.FlexBox direction="column" style={{ margin: "36px 0" }} gap="25px">
                         <Block.FlexBox direction="column" gap="11px">
-                            <Text.Body2>Email</Text.Body2>
+                            <Block.FlexBox width="190px" alignItems="center" justifyContent="space-between">
+                                <Text.Body2>Email</Text.Body2>
+                                {!isEmailValid && userInfo.email !== "" && (
+                                    <Text.Warning>이메일 주소를 정확히 입력해주세요. </Text.Warning>
+                                )}
+                            </Block.FlexBox>
                             <Input.InfoInput
                                 name="email"
                                 value={userInfo.email}
@@ -67,7 +76,12 @@ export default function Login() {
                             />
                         </Block.FlexBox>
                         <Block.FlexBox direction="column" gap="11px">
-                            <Text.Body2>Password</Text.Body2>
+                            <Block.FlexBox width="260px" alignItems="center" justifyContent="space-between">
+                                <Text.Body2>Password</Text.Body2>
+                                {!isPasswordValid && userInfo.password !== "" && (
+                                    <Text.Warning>영문, 숫자를 조합해서 입력해주세요. (8-16자)</Text.Warning>
+                                )}
+                            </Block.FlexBox>
                             <Input.InfoInput
                                 type="password"
                                 name="password"
