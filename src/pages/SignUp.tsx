@@ -61,8 +61,8 @@ export default function SignUp() {
     return (
         <>
             <Block.FlexBox width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
-                <SocialLogin />
                 <div>
+                    <SocialLogin />
                     <Text.Body2>Name</Text.Body2>
                     <Input.InfoInput
                         name="username"

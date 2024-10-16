@@ -9,7 +9,7 @@ export default function SocialLogin() {
     const message = isLoginPage ? "Log in to your Account" : "Create your Account";
     return (
         <>
-            <Block.FlexBox width="100vw" direction="column" justifyContent="center" alignItems="center">
+            <Block.FlexBox direction="column">
                 <Text.MainTitle>Think it. Make it.</Text.MainTitle>
                 <Text.Title>{message}</Text.Title>
                 <Block.ButtonBox isEnabled={false}>

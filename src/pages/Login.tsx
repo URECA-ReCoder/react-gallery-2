@@ -43,9 +43,8 @@ export default function Login() {
     return (
         <>
             <Block.FlexBox width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
-                <SocialLogin />
-
                 <div>
+                    <SocialLogin />
                     <Text.Body2>Email</Text.Body2>
                     <Input.InfoInput
                         name="email"
